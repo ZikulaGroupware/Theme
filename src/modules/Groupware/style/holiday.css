@@ -1,0 +1,19 @@
+table.isha-holiday {
+    border-width: 0px 0px 1px 1px;
+    border-spacing: 0px;
+    border-style: solid;
+}
+
+table.isha-holiday th {
+    border-width: 1px 1px 0px 0px;
+    border-style: solid;
+    background-color: #FAF0E6;
+    padding: 3px;
+}
+
+table.isha-holiday td {
+    border-width: 1px 1px 0px 0px;
+    border-style: solid;
+    padding: 3px;
+}
+

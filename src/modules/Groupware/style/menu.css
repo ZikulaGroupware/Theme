@@ -1,0 +1,87 @@
+.navbar{
+    margin:0px -10px 18px -10px;
+    background-image: url('../images/grad.png');
+    height: 25px;
+    padding-left:60px;
+    padding-top:-10px;
+}
+
+
+/* Droplicous code, change to your liking */
+#nav ul.licious{
+    text-align:left;
+    width:140px;
+    margin:0;
+    padding:0;
+    position:absolute;
+    left:0px;
+    z-index:9999;
+    -webkit-box-shadow: 3px 3px 8px #818181;
+    -moz-box-shadow: 3px 3px 8px #818181;
+}
+
+#nav ul.licious2 {
+    text-align:left;
+    width:140px;
+    margin:0;
+    padding:0;
+    position:absolute;
+    left:144px;
+    margin-top:-28px;
+    z-index:9999;
+}
+
+
+#nav ul.licious a:hover{
+    position:relative;
+    color:white;
+    background: #6ca1c0;
+}
+#nav ul.licious a {
+    position:relative;
+    font-weight:normal;
+    margin:0;
+    padding:5px 0 5px 10px;
+    color:white;
+    display:block;
+    background: #83b3cd;
+    border-bottom: 1px solid #6ca1c0;
+    background-image:none;
+    text-transform: none;
+    height:16px;
+    width:134px;
+    text-align:left;
+}
+#nav li a:hover{
+    color:white;
+    background-image: url('../images/grad2.png');
+    display:block;
+}
+#nav li a{
+    font-weight:normal;
+    text-decoration:none;
+    color:white;
+    text-shadow:none;
+    font-size:1em;
+    text-transform: uppercase;
+    height:18px;
+    padding: 5px 0px 1px 15px;
+    display:block;
+}
+#nav{
+    position:relative;
+    list-style:none;
+    margin:0 auto;
+    padding:0;
+    list-style:none;
+    font-size:1em;
+}
+#nav li{
+    position:relative;
+    display:inline;
+    margin:0px;
+    padding:0;
+    height:25px;
+    width:144px;
+
+}
