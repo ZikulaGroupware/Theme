@@ -30,7 +30,7 @@
 
 
 {foreach from=$tasks item="task"}
-<a href="{modurl modname="Tasks" type='user' func='view' id=$task.tid}">{$task.title}</a><br />
+<a href="{modurl modname="Tasks" type='user' func='view' tid=$task.tid}">{$task.title}</a><br />
 {foreachelse}
 {gt text='There are no undone tasks!'}<br />
 {/foreach}
@@ -40,8 +40,8 @@
 
 
 {foreach from=$finished_tasks item="finished_task"}
-<a href="{modurl modname="Tasks" type='user' func='view' id=$finished_task.tid}">{$finished_task.title}</a> 
-<span class="z-sub">({$finished_task.done_date|date_format:'%d.%m'})</span><br />
+<a href="{modurl modname="Tasks" type='user' func='view' tid=$finished_task.tid}">{$finished_task.title}</a> 
+<span class="z-sub">({$finished_task.done_date->format('d.m')})</span><br />
 {foreachelse}
 {gt text='There are no finished tasks!'}<br />
 {/foreach}
@@ -58,7 +58,7 @@
 {foreach from=$wiki_pages key='date' item='pages'}
 {foreach from=$pages item='page'}
     <a href="{modurl modname='Wikula' type='user' func='main' tag=$page.tag|urlencode}" title="{$page.tag}">{$page.tag}</a>
-    <span class="z-sub">{gt text='by' comment="e.g. written by Drak"} {$page.user} ({$page.time|date_format:'%d.%m'})</span>
+    <span class="z-sub">{gt text='by' comment="e.g. written by Drak"} {$page.user} ({$page.time->format('d.m')})</span>
     {if $page.note neq ''}<br /><span class="pagenote">[ {$page.note} ]</span>{/if}
     <br />
 {/foreach}

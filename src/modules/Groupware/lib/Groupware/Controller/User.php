@@ -39,7 +39,7 @@ class Groupware_Controller_User extends Zikula_AbstractController
         $tasks = ModUtil::apiFunc('Tasks','user','getTasks', array(
            'mode'  => 'undone',
            'limit' => 4,
-           'onlyMyTasks' => 'on'
+           'onlyMyTasks' => true
         ) );
         $this->view->assign('tasks', $tasks);
         $finished_tasks = ModUtil::apiFunc('Tasks','user','getTasks', array(
