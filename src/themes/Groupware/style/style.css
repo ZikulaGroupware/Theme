@@ -62,7 +62,7 @@ p, hr, h1, h2, h3, h4, h5, h6, pre, table, address, fieldset {
 
 ol {
     list-style: decimal;
-    margin: 1em 0 1em 0.5em;
+    margin: 0px;
 }
 
 ul {
@@ -90,6 +90,7 @@ dd {
 /**************** Header and navigation styles ****************/
 #theme_page_container {
     margin: 20px;
+    margin-left: 220px;
     padding: 20px;
     text-align: left;
     background-color: white;
@@ -100,6 +101,13 @@ dd {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+}
+
+
+#theme_menu_container {
+   position: absolute;
+   width:200px;
+   margin-top: -20px;
 }
 
 #theme_navigation_bar {
@@ -310,4 +318,66 @@ ul.menutree ul {
 ul.menutree ul li a {
     background: #FAFAFA;
     padding-left: 20px;
+}
+
+
+
+div.groupware_mainmenu {
+    background: -moz-linear-gradient(center top , #FEFEFE, #E6E6E6) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FEFEFE), to(#E6E6E6)) repeat scroll 0 0 transparent;
+    background: linear-gradient(#FEFEFE, #E6E6E6); /*CSS3*/
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: #CCCCCC;
+    color: #AAAAAA;
+    height: auto;
+    line-height: 30px;
+    margin: 0px;
+    min-height: 22px;
+    padding: 0 5px;
+}
+
+
+div.groupware_mainmenu2 {
+    background: -moz-linear-gradient(center top , #FF9933, #FF9900) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FF9933), to(#FF9900)) repeat scroll 0 0 transparent;
+    background: linear-gradient(#FF9933, #FF9900); /*CSS3*/
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+    border-color: #FF9900;
+    color: #AAAAAA;
+    height: auto;
+    line-height: 30px;
+    margin: 0px;
+    min-height: 22px;
+    padding: 0 5px;
+}
+
+div.groupware_mainmenu0 {
+    padding:3px 0px 0px 0px;
+    background-color:white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #CCCCCC;
+    color: #AAAAAA;
+    height: auto;
+    line-height: 30px;
+    margin: 0px;
+    min-height: 22px;
+    padding: 8px 0px 5px 0px;
+}
+
+
+
+div.groupware_submenu {
+    background-color: #FFCC99;
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: #CCCCCC;
+    color: #AAAAAA;
+    height: auto;
+    line-height: 20px;
+    margin: 0px;
+    min-height: 22px;
+    padding: 0 5px;
 }

@@ -13,41 +13,45 @@
  * information regarding copyright and licensing.
  */
 
-class Groupware_Controller_User extends Zikula_AbstractController
+/**
+ * Smarty function to display a login in the menu
+ *
+ * Example
+ * {adminlink}
+ *
+ * Two additional defines need adding to a xanthia theme for this plugin
+ * _CREATEACCOUNT and _YOURACCOUNT
+ *
+ * @author       Fabian Wuertz
+ * @since        21/10/03
+ * @see          function.myuserPageEdit.php::smarty_function_myuserPageEdit()
+ * @param        array       $params      All attributes passed to this function from the template
+ * @param        object      &$smarty     Reference to the Smarty object
+ * @param        string      $start       start delimiter
+ * @param        string      $end         end delimiter
+ * @param        string      $seperator   seperator
+ * @return       string      user links
+ */
+function smarty_function_groupwareoverview($params, &$smarty)
 {
 
-    //-----------------------------------------------------------//
-    //-- Main ---------------------------------------------------//
-    //-----------------------------------------------------------//
-
     
-    public function main()
-    {
-        return $this->view();
-    }
-
-  
-    public function view()
-    {
-        // Security check
-        if (!SecurityUtil::checkPermission('Groupware::', '::', ACCESS_READ)) {
-            return LogUtil::registerPermissionError();
-        }
-        
-        // tasks
+   // tasks
         //-------------------------
         $tasks = ModUtil::apiFunc('Tasks','user','getTasks', array(
            'mode'  => 'undone',
            'limit' => 4,
            'onlyMyTasks' => true
         ) );
-        $this->view->assign('tasks', $tasks);
+        $smarty->assign('tasks', $tasks);
         $finished_tasks = ModUtil::apiFunc('Tasks','user','getTasks', array(
            'mode'  => 'done',
            'limit' => 4,
            'orderBy' => 'done_date desc'
         ) );
-        $this->view->assign('finished_tasks', $finished_tasks);
+        $smarty->assign('finished_tasks', $finished_tasks);
+        
+        
         
         //wiki
         //-------------------------
@@ -55,7 +59,7 @@ class Groupware_Controller_User extends Zikula_AbstractController
             'numitems' => 3,
             'formated' => true
         ) );
-        $this->view->assign('wiki_pages', $wiki_pages);
+        $smarty->assign('wiki_pages', $wiki_pages);
         
         
         //events
@@ -73,7 +77,7 @@ class Groupware_Controller_User extends Zikula_AbstractController
                  $events[] = $event;
              }
         }
-        $this->view->assign('events', $events);
+        $smarty->assign('events', $events);
         
         //forum
         //-------------------------        
@@ -86,11 +90,11 @@ class Groupware_Controller_User extends Zikula_AbstractController
            'last_visit' => $last_visit,
            'last_visit_unix' => $last_visit_unix
         ));
-        $this->view->assign('forum_posts', $posts );
+        $smarty->assign('forum_posts', $posts );
         
         //birthdays
         $birthdays = ModUtil::apiFunc('AddressBook','user','getBirthdays');
-        $this->view->assign('birthdays',  $birthdays );
+        $smarty->assign('birthdays',  $birthdays );
         
         // comments
         //------------------------- 
@@ -100,10 +104,8 @@ class Groupware_Controller_User extends Zikula_AbstractController
         );
         $items = ModUtil::apiFunc('EZComments', 'user', 'getall', $options);
         $comments = ModUtil::apiFunc('EZComments', 'user', 'prepareCommentsForDisplay', $items);
-        $this->view->assign('comments', $comments);
+        $smarty->assign('comments', $comments);
         
-        
-        return $this->view->fetch('user/view.tpl');
-    }
-
+        return $smarty->fetch('view.tpl');
+    
 }

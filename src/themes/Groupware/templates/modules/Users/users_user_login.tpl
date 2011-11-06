@@ -11,7 +11,7 @@
 {/if}
 {/foreach}
 
-<div style="text-align:right;width:100%"><img src="themes/cscw/images/stura_logo.jpg"></div>
+<div style="text-align:right;width:100%"><img src="themes/Groupware/images/stura_logo.jpg"></div>
 
 {gt text='User log-in' assign='templatetitle'}
 {modulelinks modname='Users' type='user'}

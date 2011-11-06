@@ -13,3 +13,4 @@
         {pageaddvar name='header' value=$ieconditional}
     </head>
     <body>
+<div>
