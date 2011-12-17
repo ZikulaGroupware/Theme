@@ -11,6 +11,8 @@
         {pageaddvar name='header' value=$ieconditional}
         {browserhack condition="if IE 7" assign="ieconditional"}<link rel="stylesheet" type="text/css" href="{$stylepath}/fluid960gs/ie.css" media="screen" />{/browserhack}
         {pageaddvar name='header' value=$ieconditional}
+        
+        {pageaddvar name="stylesheet" value="$stylepath/owncloud.css"}
     </head>
     <body>
 <div>

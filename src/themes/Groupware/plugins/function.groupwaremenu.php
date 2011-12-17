@@ -35,31 +35,69 @@
 function smarty_function_groupwaremenu($params, &$smarty)
 {
 
+    // Security check
+    if ( !SecurityUtil::checkPermission('User::', '::', ACCESS_READ) ) {
+        return LogUtil::registerPermissionError();
+    }
+    
     $dom = ZLanguage::getThemeDomain('Groupware');
     
-    $output  = '<div id="theme_menu_container">';
+    $output  = '<nav><div id="navigation"><ul id="apps" class="svg">';
         
-    $output .= '<div class="groupware_mainmenu">'.
-               '<a href="'.System::getHomepageUrl().'">'.__('Home', $dom).'</a>'.
-               '</div>';   
+    $output .= '<li>'.
+               '<a style="background-image:url('.System::getBaseUrl().'themes/Groupware/images/home.png);" href="'.System::getHomepageUrl().'">'.__('Home', $dom).'</a>'.
+               '</li>';   
         
-    $modules['Tasks']  = __('Tasks', $dom); 
-    $modules['Dizkus'] = __('Forum', $dom); 
-    $modules['Wikula'] = __('Wiki', $dom);
-    $modules['PostCalendar'] = __('Calendar', $dom);
-    $modules['AddressBook'] = __('Adressbook', $dom); 
-    $modules['Users'] = __('Settings', $dom); 
-    foreach($modules as $modname => $title) {
+    $modules['Tasks']  = array(
+        'title' => __('Tasks', $dom),
+        'icon' => 'dialog-ok.png',
+    ); 
+    $modules['Dizkus'] = array(
+        'title' => __('Forum', $dom),
+        'icon' => 'empathy-away.png',
+    );
+    $modules['Wikula'] = array(
+        'title' => __('Wiki', $dom),
+        'icon' => 'gtk-edit.png',
+    );
+    $modules['PostCalendar'] = array(
+        'title' => __('Calendar', $dom),
+        'icon' => 'appointment-soon.png',
+    );    
+    $modules['AddressBook'] = array(
+        'title' => __('Adressbook', $dom),
+        'icon' => 'stock_people.png',
+    );
+    $modules['Files'] = array(
+        'title' => __('Files', $dom),
+        'icon' => 'folder.png',
+    );
+    $modules['Users'] = array(
+        'title' => __('Settings', $dom),
+        'icon' => 'avatar-default.png',
+    );
+    foreach($modules as $modname => $value) {
         if( ModUtil::available($modname) ) {
-            $classname = 'groupware_mainmenu';
-            if(ModUtil::getName() == $modname) {
-                $classname .= '2';
+            $title = $value['title'];
+            $icon  = $value['icon'];
+            $style = '';
+            if(!empty($icon)) {
+                $style = 'background-image:url('.System::getBaseUrl().'/themes/Groupware/images/'.$icon.');';
             }
-            $output .= '<div class="'.$classname.'">'.
-                       '<a href="'.ModUtil::url($modname, 'user', 'main').'">'.$title.'</a>'.
-                       '</div>';
+            $active = '';
+            if(ModUtil::getName() == $modname) {
+                $active = 'class="active"';
+            }            
+            if( $modname == 'Users') {
+                 $output .= '</ul><ul id="settings" class="svg">'."\n";
+            }
+            $output .= '<li>'.
+                       '<a style="'.$style.'" '.$active.' href="'.ModUtil::url($modname, 'user', 'main').'">'.$title.'</a>'.
+                       '</li>'."\n\n";
         }
     }
+    
+   
     
     
     // Security check
@@ -69,23 +107,23 @@ function smarty_function_groupwaremenu($params, &$smarty)
             if($type == 'admin') {
                 $classname .= '2';
             }
-        $output .= '<div class="'.$classname.'">'.
-                   '<a href="'.ModUtil::url('adminpanel', 'admin', 'adminpanel').'">'.
+        $output .= '<li>'.
+                   '<a style="background-image:url('.System::getBaseUrl().'themes/Groupware/images/settings.png);" href="'.ModUtil::url('adminpanel', 'admin', 'adminpanel').'">'.
                    __('Administration', $dom).
                     '</a>'.
-                   '</div>';
+                   '</li>';
     }
     
     if(UserUtil::isLoggedIn()) {
-        $output .= '<div class="groupware_mainmenu">'.
-               '<a href="'.ModUtil::url('Users', 'user', 'logout').'">'.
+        $output .= '<li>'.
+               '<a style="background-image:url('.System::getBaseUrl().'themes/Groupware/images/system-log-out.png);" href="'.ModUtil::url('Users', 'user', 'logout').'">'.
                __('Log-out', $dom).
                '</a>'.
-               '</div>';
+               '</li>';
     }
     
     
-    $output .= '</div>';
+    $output .= '</ul></div></nav>';
     return $output;
     
 }

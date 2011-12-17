@@ -3,8 +3,9 @@
 
 {groupwaremenu}
 
-<div id="theme_page_container">
-    {groupwareoverview}
+<div id="theme_page_container">   
+    {$maincontent}
 </div>
+
 
 {include file='includes/footer.tpl'}
